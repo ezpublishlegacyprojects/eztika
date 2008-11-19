@@ -1,0 +1,3 @@
+#!/bin/sh
+TIKA_JAR=/opt/local/bin/tika.jar
+/usr/bin/java -jar $TIKA_JAR -x $1 | html2text
