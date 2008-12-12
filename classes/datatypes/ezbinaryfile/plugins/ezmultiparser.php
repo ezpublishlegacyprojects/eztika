@@ -55,7 +55,6 @@ class eZMultiParser
         {
             $fp = fopen( $tmpName, "r" );
             $metaData = fread( $fp, filesize( $tmpName ) );
-            $metaData = strip_tags( $metaData );
             fclose( $fp );
             unlink( $tmpName );
         }
