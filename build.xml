@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<project name="eZPublish" basedir="build" default="build">
+<project name="eZTika" basedir="build" default="build">
 
     <description>eZTika extension build file</description>
 
     <property file="../properties/eztika.properties"/>
 
     <target name="infos">
-        <echo message="EZSI BUILD INFORMATIONS"/>
-        <echo message="-----------------------"/>
+        <echo message="EZTIKA BUILD INFORMATIONS"/>
+        <echo message="-------------------------"/>
         <echo message="eztika.version.major   : ${eztika.version.major}"/>
         <echo message="eztika.version.minor   : ${eztika.version.minor}"/>
         <echo message="eztika.version.release : ${eztika.version.release}"/>
