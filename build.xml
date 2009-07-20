@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project name="eZPublish" basedir="build" default="build">
+
+    <description>eZTika extension build file</description>
+
+    <property file="../properties/eztika.properties"/>
+
+    <target name="infos">
+        <echo message="EZSI BUILD INFORMATIONS"/>
+        <echo message="-----------------------"/>
+        <echo message="eztika.version.major   : ${eztika.version.major}"/>
+        <echo message="eztika.version.minor   : ${eztika.version.minor}"/>
+        <echo message="eztika.version.release : ${eztika.version.release}"/>
+        <echo message="eztika.version.alias   : ${eztika.version.alias}"/>
+        <echo message="eztika.svn.trunk.url   : ${eztika.svn.trunk.url}"/>
+    </target>
+
+    <target name="warning" depends="infos">
+        <echo message="Please check informations defined above are correct"/>
+        <echo message="If not feel free to update the properties/eztika.properties file"/>
+        <echo message="This script will wait for 5 seconds before it starts"/>
+
+        <sleep seconds="5"/>
+    </target>
+
+    <target name="init" depends="warning">
+        <exec executable="svn" failonerror="true">
+            <arg value="export"/>
+            <arg value="${eztika.svn.trunk.url}"/>
+            <arg value="eztika"/>
+        </exec>
+    </target>
+
+    <target name="build" depends="init">
+        <antcall target="update-ezinfo-php"/>
+        <antcall target="update-license-headers"/>
+
+        <delete dir="eztika/build"/>
+        <delete file="eztika/build.xml"/>
+    </target>
+
+    <target name="dist">
+        <tar destfile="eztika-${eztika.version.alias}.${eztika.version.release}.tar.gz"
+             compression="gzip"
+             longfile="gnu"
+             basedir="${basedir}"/>
+
+    </target>
+
+    <target name="update-ezinfo-php">
+        <echo message="Updating ezinfo.php"/>
+
+        <replaceregexp byline="true">
+            <regexp pattern='^(            \047Version\047 => ")(.*)(",)$'/>
+            <substitution expression='\1${eztika.version.alias}-${eztika.version.release}\3'/>
+            <fileset dir="${basedir}" includes="**/*ezinfo.php"/>
+        </replaceregexp>
+    </target>
+
+    <target name="update-license-headers">
+        <echo message="Updating license headers"/>
+
+        <!-- SOFTWARE RELEASE -->
+        <replaceregexp byline="true">
+            <regexp pattern="// SOFTWARE RELEASE: (.*)"/>
+            <substitution expression="// SOFTWARE RELEASE: ${eztika.version.alias}-${eztika.version.release}"/>
+            <fileset dir="${basedir}">
+                <include name="**/*.php"/>
+            </fileset>
+        </replaceregexp>
+    </target>
+
+    <target name="distclean">
+        <delete file="eztika-${eztika.version.alias}.${eztika.version.release}.tar.gz"/>
+    </target>
+
+    <target name="cleanall" depends="distclean">
+        <delete dir="eztika"/>
+    </target>
+</project>
