@@ -36,7 +36,6 @@
         <antcall target="update-license-headers"/>
 
         <delete dir="eztika/build"/>
-        <delete file="eztika/build.xml"/>
     </target>
 
     <target name="dist">
