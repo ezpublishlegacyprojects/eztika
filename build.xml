@@ -1,61 +1,118 @@
 <?xml version="1.0"?>
-<project name="eZTika" basedir="build" default="build">
+<project name="eZTika" default="all">
 
     <description>eZTika extension build file</description>
 
-    <property file="../properties/eztika.properties"/>
+    <mkdir dir="build"/>
 
+    <!-- ================== -->
+    <!-- dynamic properties -->
+    <!-- ================== -->
+
+    <!-- current year -->
+    <tstamp>
+        <format property="date.current.year" pattern="yyyy"/>
+    </tstamp>
+
+    <!-- ========================= -->
+    <!-- end of dynamic properties -->
+    <!-- ========================= -->
+
+    <!-- ================= -->
+    <!-- static properties -->
+    <!-- ================= -->
+
+    <property name="eztika.build.dir" location="build"/>
+    <property file="./ant/eztika.properties"/>
+
+    <!-- ======================== -->
+    <!-- end of static properties -->
+    <!-- ======================== -->
+
+    <!-- ============================= -->
+    <!-- high level ( public ) targets -->
+    <!-- ============================= -->
+
+    <!-- Shows the list of properties used for building this extension -->
+    <!-- Anytime the eztika.properties file is update, this target must  -->
+    <!-- me update as well                                             -->
     <target name="infos">
-        <echo message="EZTIKA BUILD INFORMATIONS"/>
-        <echo message="-------------------------"/>
+        <echo message="EZOE BUILD INFORMATION"/>
+        <echo message="----------------------"/>
         <echo message="eztika.version.major   : ${eztika.version.major}"/>
         <echo message="eztika.version.minor   : ${eztika.version.minor}"/>
         <echo message="eztika.version.release : ${eztika.version.release}"/>
         <echo message="eztika.version.alias   : ${eztika.version.alias}"/>
         <echo message="eztika.svn.trunk.url   : ${eztika.svn.trunk.url}"/>
+        <echo message="eztika.build.dir       : ${eztika.build.dir}"/>
     </target>
 
+    <!-- Displays a warning before building the extension        -->
+    <!-- Also waits for 5 seconds before starting the real build -->
+    <!-- This makes it possible to interrupt the script before   -->
+    <!-- any real task is done                                   -->
     <target name="warning" depends="infos">
         <echo message="Please check informations defined above are correct"/>
-        <echo message="If not feel free to update the properties/eztika.properties file"/>
+        <echo message="If not feel free to update the ant/eztika.properties file"/>
         <echo message="This script will wait for 5 seconds before it starts"/>
 
         <sleep seconds="5"/>
     </target>
 
+    <!-- Prepares the build                               -->
+    <!-- Runs an svn export of the extension's repository -->
     <target name="init" depends="warning">
         <exec executable="svn" failonerror="true">
             <arg value="export"/>
             <arg value="${eztika.svn.trunk.url}"/>
-            <arg value="eztika"/>
+            <arg value="${eztika.build.dir}/eztika"/>
         </exec>
     </target>
 
+    <!-- Builds the extension once the SVN repository is exported -->
+    <!-- Prune miscaellanous useless files                        -->
     <target name="build" depends="init">
         <antcall target="update-ezinfo-php"/>
         <antcall target="update-license-headers"/>
 
-        <delete dir="eztika/build"/>
+        <delete dir="${eztika.build.dir}/eztika/ant"/>
+        <delete file="${eztika.build.dir}/eztika/build.xml"/>
     </target>
 
+    <!-- Creates a tarball of the newly built extension -->
     <target name="dist">
-        <tar destfile="eztika-${eztika.version.alias}.${eztika.version.release}.tar.gz"
+        <mkdir dir="dist"/>
+        <tar destfile="dist/eztika-${eztika.version.alias}.${eztika.version.release}.tar.gz"
              compression="gzip"
              longfile="gnu"
-             basedir="${basedir}"/>
-
+             basedir="${eztika.build.dir}"/>
     </target>
 
-    <target name="update-ezinfo-php">
-        <echo message="Updating ezinfo.php"/>
+    <!-- Meta target, calls build and dist -->
+    <target name="all" depends="build,dist"/>
 
-        <replaceregexp byline="true">
-            <regexp pattern='^(            \047Version\047 => ")(.*)(",)$'/>
-            <substitution expression='\1${eztika.version.alias}-${eztika.version.release}\3'/>
-            <fileset dir="${basedir}" includes="**/*ezinfo.php"/>
-        </replaceregexp>
+    <!-- Cleans the generated tarball by dist-->
+    <target name="distclean">
+        <delete dir="dist"/>
     </target>
 
+    <!-- Purge everything in the build directory -->
+    <!-- Also remove the build directory         -->
+    <target name="cleanall" depends="distclean">
+        <delete dir="${eztika.build.dir}"/>
+    </target>
+
+    <!-- ==================================== -->
+    <!-- end of high level ( public ) targets -->
+    <!-- ==================================== -->
+
+    <!-- ====================================================== -->
+    <!-- low level ( private ) targets, for internal usage ONLY -->
+    <!-- ====================================================== -->
+
+    <!-- Updates the license headers with correct version numbers -->
+    <!-- Updates the // SOFTWARE RELEASE line                     -->
+    <!-- Updates the // COPYRIGHT NOTICE line                     -->
     <target name="update-license-headers">
         <echo message="Updating license headers"/>
 
@@ -63,17 +120,34 @@
         <replaceregexp byline="true">
             <regexp pattern="// SOFTWARE RELEASE: (.*)"/>
             <substitution expression="// SOFTWARE RELEASE: ${eztika.version.alias}-${eztika.version.release}"/>
-            <fileset dir="${basedir}">
+            <fileset dir="${eztika.build.dir}">
+                <include name="**/*.php"/>
+            </fileset>
+        </replaceregexp>
+
+        <!-- COPYRIGHT NOTICE -->
+        <replaceregexp byline="true">
+            <regexp pattern="// COPYRIGHT NOTICE: Copyright \(C\) 1999-[\d]{4} eZ Systems AS"/>
+            <substitution expression="// COPYRIGHT NOTICE: Copyright (C) 1999-${date.current.year} eZ Systems AS"/>
+            <fileset dir="${eztika.build.dir}">
                 <include name="**/*.php"/>
             </fileset>
         </replaceregexp>
     </target>
 
-    <target name="distclean">
-        <delete file="eztika-${eztika.version.alias}.${eztika.version.release}.tar.gz"/>
+    <!-- Updates ezinfo.php with correct version numbers -->
+    <target name="update-ezinfo-php">
+        <echo message="Updating ezinfo.php"/>
+
+        <replaceregexp byline="true" flags="i">
+            <regexp pattern="^([\s]+\047version\047[\s]+=>[\s]+\047)(.*)(\047,)$"/>
+            <substitution expression='\1${eztika.version.alias}-${eztika.version.release}\3'/>
+            <fileset dir="${eztika.build.dir}" includes="**/*ezinfo.php"/>
+        </replaceregexp>
     </target>
 
-    <target name="cleanall" depends="distclean">
-        <delete dir="eztika"/>
-    </target>
+    <!-- ============================================================= -->
+    <!-- end of low level ( private ) targets, for internal usage ONLY -->
+    <!-- ============================================================= -->
+
 </project>
