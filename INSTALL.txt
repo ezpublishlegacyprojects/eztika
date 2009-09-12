@@ -10,7 +10,9 @@ Requirements:
 Installing:
 1. Extract the eztika extension, and place it in the extensions folder.
 
-2. Copy the eztika shell script and tika.jar from the extension bin folder to a location your web server has access to (make sure it is executable) and adapt the eztika shell script accordingly
+2. Copy the eztika shell script and tika.jar from the extension bin folder to a 
+   location your web server has access to and edit the shell script
+   as well to set the path to the tika.jar file (make sure it is executable) 
 
 3. Enable the extension in eZ Publish. Do this by opening settings/override/site.ini.append.php ,
    and add in the [ExtensionSettings] block:
@@ -23,5 +25,5 @@ Installing:
 
 [MultiHandlerSettings]
 
-#Change the path to the eztika shell script, which probably needs editing as well
+#Change the path to the eztika shell script
 TextExtractionTool=<path to>/eztika

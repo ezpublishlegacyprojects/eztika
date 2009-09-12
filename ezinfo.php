@@ -1,9 +1,9 @@
 <?php
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Find
-// SOFTWARE RELEASE: 1.0.x
-// COPYRIGHT NOTICE: Copyright (C) 2008 eZ Systems AS
+// SOFTWARE NAME: eZ Tika
+// SOFTWARE RELEASE: 1.1
+// COPYRIGHT NOTICE: Copyright (C) 2008-2009 Paul Borgermans and eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
 //   This program is free software; you can redistribute it and/or
@@ -39,13 +39,13 @@ class eZTikaInfo
     {
         return array(
             'Name' => "eZ Tika",
-            'Version' => "1.0-rc",
-            'Copyright' => "Copyright © 2008 Paul Borgermans and eZ Systems AS.",
+            'Version' => "1.1",
+            'Copyright' => "Copyright © 2008-2009 Paul Borgermans",
             'Info_url' => "http://ez.no",
             'License' => "GNU General Public License v2.0",
             '3rdparty_software' =>
             array ( 'name' => 'Tika',
-                    'Version' => '0.3-svn',
+                    'Version' => '0.5-svn (rev  814142)',
                     'copyright' => 'The Apache Software Foundation.',
                     'license' => 'Apache License, Version 2.0',
                     'info_url' => 'http://lucene.apache.org/tika/' ) );

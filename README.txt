@@ -7,7 +7,7 @@ Description:
 
 eZ Tika is an extension that enables a handler for converting multiple binary file formats to plain text as used by the search engine (if you enabled those attributes as searcheable)
 
-Currently, the following formats are enabled (see also binaryfile.ini.append.php for a more up to date list):
+Currently, most common office formats are enabled (see also binaryfile.ini.append.php):
 
 [application/pdf]
 [application/msword]
@@ -22,4 +22,7 @@ Currently, the following formats are enabled (see also binaryfile.ini.append.php
 [application/vnd.oasis.opendocument.spreadsheet]
 [application/vnd.oasis.opendocument.formula]
 [application/zip]
+[application/vnd.openxmlformats-officedocument.wordprocessingml.document]
+[application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]
+[application/vnd.openxmlformats-officedocument.presentationml.presentation]
 [application/octet-stream]
