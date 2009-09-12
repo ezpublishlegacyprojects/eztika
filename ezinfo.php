@@ -41,7 +41,7 @@ class eZTikaInfo
             'Name' => "eZ Tika",
             'Version' => "1.1",
             'Copyright' => "Copyright © 2008-2009 Paul Borgermans",
-            'Info_url' => "http://ez.no",
+            'Info_url' => "http://projects.ez.no/eztika",
             'License' => "GNU General Public License v2.0",
             '3rdparty_software' =>
             array ( 'name' => 'Tika',

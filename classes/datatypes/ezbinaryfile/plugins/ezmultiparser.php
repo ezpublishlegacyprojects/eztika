@@ -5,9 +5,9 @@
 // Created on: <08-Dec-2008 20:13 pb>
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Publish
-// SOFTWARE RELEASE: 4.0.x
-// COPYRIGHT NOTICE: Copyright (C) 2008 Paul Borgermans, eZ Systems AS
+// SOFTWARE NAME: eZ Tika
+// SOFTWARE RELEASE: 1.1
+// COPYRIGHT NOTICE: Copyright (C) 2008-2009 Paul Borgermans
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
 //   This program is free software; you can redistribute it and/or
