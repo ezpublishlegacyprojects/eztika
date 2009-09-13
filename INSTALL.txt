@@ -22,8 +22,18 @@ Installing:
 
 5. Edit extension/eztika/settings/binaryfile.ini.append.php and adapt the PATH to the eztika script:
 
-
 [MultiHandlerSettings]
 
 #Change the path to the eztika shell script
 TextExtractionTool=<path to>/eztika
+
+
+6. optionally, install and adapt xpdf and set the path to pdftotext in the
+   supplied wrapper script ezpdftotext. This will give you the best
+   experience with pdf files with international character sets.
+   You will need to use the alterate settings from the example supplied in
+   extension/eztika/settings/binaryfile.ini.append.withxpdf.php
+
+[PDFHandlerSettings]
+TextExtractionTool=/<path to>/ezpdftotext
+
