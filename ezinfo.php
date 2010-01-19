@@ -44,12 +44,12 @@ class eZTikaInfo
             'Info_url' => "http://projects.ez.no/eztika",
             'License' => "GNU General Public License v2.0",
             '3rdparty_software' =>
-            array ( 'name' => 'Tika',
-                    'Version' => '0.6-svn (rev 897576)',
-                    'copyright' => 'The Apache Software Foundation.',
-                    'license' => 'Apache License, Version 2.0',
-                    'info_url' => 'http://lucene.apache.org/tika/' ) );
-    }
+                        array ( 'name' => 'Tika',
+                                'Version' => '0.6-svn (rev 897576)',
+                                'copyright' => 'The Apache Software Foundation.',
+                                'license' => 'Apache License, Version 2.0',
+                                'info_url' => 'http://lucene.apache.org/tika/' ) );
+        }
 }
 
 ?>
