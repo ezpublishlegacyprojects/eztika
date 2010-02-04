@@ -1,9 +1,8 @@
 Changelog eztika 1.1 to 1.2
 ===========================
 
-
 - updated tika.jar to 1.6-dev (rev 897576) which has better support for ms excel, a reduced footprint and output encoding options
-  it now correctly converts OOo and MSxx formats with asian content properly to UTF-8
+  it now correctly converts OOo and MSxx formats with asian content to UTF-8
 - added encoding option --encoding=utf8 to eztika wrapper script 
 - updated ezinfo.php
 - changed structure for building with http://projects.ez.no/ezextensionbuilder
@@ -17,5 +16,4 @@ Changelog eztika 1.0 to 1.1
 - updated tika.jar to 1.5-dev (rev  814142), including more support for office xml formats and various bugfixes
 - added office xml format mimetypes to binaryfile.ini
 - updated ezinfo.php
-
 
