@@ -3,7 +3,7 @@
 
 Requirements:
 - eZ Publish 4.0.1 or later.
-- Java Runtime Environment 5.0 or later. ( http://java.sun.com/javase/downloads/index.jsp )
+- Java Runtime Environment 5.0 or later (6.0, aka 1.6 recommended). ( http://java.sun.com/javase/downloads/index.jsp )
 - Unix like OS, although the Bourne shell script is a good base for creating a windows .bat file
 
 
@@ -18,7 +18,7 @@ Installing:
    and add in the [ExtensionSettings] block:
    ActiveExtensions[]=eztika
 
-4. Update the class autoloads by running the script: php bin/php/ezpgenerateautoloads.php
+4. Update the class autoloads by running the script: php bin/php/ezpgenerateautoloads.php -e
 
 5. Edit extension/eztika/settings/binaryfile.ini.append.php and adapt the PATH to the eztika script:
 
@@ -28,7 +28,7 @@ Installing:
 TextExtractionTool=<path to>/eztika
 
 
-6. optionally, install and adapt xpdf and set the path to pdftotext in the
+6. optionally (not really needed since ez tika 1.3), install and adapt xpdf and set the path to pdftotext in the
    supplied wrapper script ezpdftotext. This will give you the best
    experience with pdf files with international character sets.
    You will need to use the alterate settings from the example supplied in

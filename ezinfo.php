@@ -39,16 +39,16 @@ class eZTikaInfo
     {
         return array(
             'Name' => "eZ Tika",
-            'Version' => "1.2",
+            'Version' => "1.3",
             'Copyright' => "Copyright © 2008-2010 Paul Borgermans",
             'Info_url' => "http://projects.ez.no/eztika",
             'License' => "GNU General Public License v2.0",
             '3rdparty_software' =>
                         array ( 'name' => 'Tika',
-                                'Version' => '0.6-svn (rev 897576)',
+                                'Version' => '0.8-svn (rev 933934)',
                                 'copyright' => 'The Apache Software Foundation.',
                                 'license' => 'Apache License, Version 2.0',
-                                'info_url' => 'http://lucene.apache.org/tika/' ) );
+                                'info_url' => 'http://tika.apache.org/' ) );
         }
 }
 
