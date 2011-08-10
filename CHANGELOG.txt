@@ -1,6 +1,11 @@
+Changelog eztika 1.3 to 1.4 
+===========================
+
+- updated tika.jar to 1.0-dev (svn rev 1156078); adding support for chm, iWork and many bugfixes
+
 Changelog eztika 1.2 to 1.3
 ===========================
-- updated tika.jar to 0.8-dev (rev 933934); now supporting correctly CJK pdfs
+- updated tika.jar to 0.8-dev (svn rev 933934); now supporting correctly CJK pdfs
 
 
 Changelog eztika 1.1 to 1.2

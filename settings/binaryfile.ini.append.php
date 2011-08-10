@@ -4,7 +4,6 @@
 
 ExtensionRepositories[]=eztika/classes/datatypes/ezbinaryfile
 
-#warning: CJK pdf's are not working correctly, use xpdf based conversion instead
 MetaDataExtractor[application/pdf]=ezmulti
 
 MetaDataExtractor[application/msword]=ezmulti
