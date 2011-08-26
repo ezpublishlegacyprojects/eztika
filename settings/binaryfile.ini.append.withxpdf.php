@@ -29,10 +29,9 @@ MetaDataExtractor[application/octet-stream]=ezmulti
 [MultiHandlerSettings]
 
 #Change the path to the eztika shell script, which probably needs editing as well
-TextExtractionTool=/opt/local/bin/eztika
-
+TextExtractionTool=./extension/eztika/bin/eztika
 
 [PDFHandlerSettings]
-TextExtractionTool=/opt/local/bin/ezpdftotext
+TextExtractionTool=./extension/eztika/bin/ezpdftotext
  */
 ?>

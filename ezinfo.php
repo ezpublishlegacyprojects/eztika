@@ -2,7 +2,7 @@
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Tika
-// SOFTWARE RELEASE: 1.1
+// SOFTWARE RELEASE: 1.4-0-final
 // COPYRIGHT NOTICE: Copyright (C) 2008-2009 Paul Borgermans and eZ Systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -30,16 +30,15 @@
 /**
  * eZTikaInfo
  * display meta adn copyright info for eZ Publish eztika extension
- * 
+ *
  */
-
 class eZTikaInfo
 {
     static function info()
     {
         return array(
             'Name' => "eZ Tika",
-            'Version' => "1.4",
+            'Version' => "1.5.0",
             'Copyright' => "Copyright © 2008-2011 Paul Borgermans",
             'Info_url' => "http://projects.ez.no/eztika",
             'License' => "GNU General Public License v2.0",

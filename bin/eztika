@@ -1,4 +1,4 @@
 #!/bin/sh
 JAVA=/usr/bin/java
-TIKA_JAR=/usr/local/bin/tika.jar
+TIKA_JAR=./extension/eztika/bin/tika.jar
 $JAVA -jar $TIKA_JAR --text  --encoding=utf8 $1
